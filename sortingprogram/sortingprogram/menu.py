@@ -14,8 +14,6 @@ def call_menu():
     print(f"[5] Quick Sort;")
     print(f"[6] Merge Sort;")
     print(f"[7] Heap Sort;")
-    print(f"[8] Radix Sort;")
-    print(f"[9] Counting Sort;")
     print(f"[0] Exit.")
 
     select_algorithm()

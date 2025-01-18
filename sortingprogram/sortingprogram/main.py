@@ -6,7 +6,4 @@
 
 from menu import call_menu
 
-# TODO
-# Create graphs and update it in real time sorting (and show to user of course)
-
 call_menu()
