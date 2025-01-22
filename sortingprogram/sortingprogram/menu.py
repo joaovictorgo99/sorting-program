@@ -1,6 +1,5 @@
 # menu.py
 
-from matplotlib import pyplot as plt
 import sort
 import utils
 
@@ -28,8 +27,16 @@ def select_algorithm():
             option = int(input(f"Option: "))
         except ValueError:
             print(f"This is not a valid option.")
+            continue
 
-        array = utils.create_array()
+        if option == 0:
+            break
+        elif 1 <= option <= 7:
+            array = utils.create_array()
+            utils.plot_graph(array, start = True)
+        else:
+            print(f"This is not a valid option.")
+            continue
 
         if option == 1:
             sort.bubble_sort(array)
@@ -45,5 +52,6 @@ def select_algorithm():
             sort.merge_sort(array)
         elif option == 7:
             sort.heap_sort(array)
-        elif option == 0:
-            break
+
+        if 1 <= option <= 7:
+            utils.plot_graph(array, finish = True)

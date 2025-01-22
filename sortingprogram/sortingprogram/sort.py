@@ -1,8 +1,12 @@
 # sort.py
 
+import utils
+
 def bubble_sort(array):
     for i in range(len(array)):
         for j in range(len(array)-i-1):
+            utils.plot_graph(array, j)
+
             if array[j] > array[j+1]:
                 array[j], array[j+1] = array[j+1], array[j]
 
@@ -11,8 +15,12 @@ def selection_sort(array):
         minimum_value_index = i
 
         for j in range(i+1, len(array)):
+            utils.plot_graph(array, minimum_value_index, j)
+
             if array[j] < array[minimum_value_index]:
                 minimum_value_index = j
+
+                utils.plot_graph(array, minimum_value_index, j)
                 
         array[i], array[minimum_value_index] = array[minimum_value_index], array[i]
 
@@ -22,10 +30,14 @@ def insertion_sort(array):
         value = array[i]
 
         while j >= 0 and array[j] > value:
+            utils.plot_graph(array, j, j+1 ,i)
+
             array[j+1] = array[j]
             j = j-1
 
         array[j+1] = value
+
+        utils.plot_graph(array, j, j+1, i)
 
 def shell_sort(array):
     gap = len(array)//2
@@ -36,10 +48,14 @@ def shell_sort(array):
             value = array[i]
 
             while j >= gap and array[j-gap] > value:
+                utils.plot_graph(array, j, j-gap)
+
                 array[j] = array[j-gap]
                 j = j-gap
 
             array[j] = value
+
+            utils.plot_graph(array, j, j-gap)
 
         gap = gap//2
 
@@ -51,11 +67,17 @@ def quick_sort(array):
         pivot = array[0]
 
         for i in range(1, len(array)):
+            utils.plot_graph(array, 0, i, j)
+
             if array[i] <= pivot:
                 array[i], array[j] = array[j], array[i]
                 j = j+1
 
+                utils.plot_graph(array, 0, i, j)
+
         array[0], array[j-1] = array[j-1], array[0]
+
+        utils.plot_graph(array, 0, j-1, j)
 
         quick_sort(array[:j-1])
         quick_sort(array[j:])
@@ -71,10 +93,14 @@ def merge_sort(array):
         j = mid
         ordered_array = []
 
+        utils.plot_graph(array, third_bar_index = j)
+
         merge_sort(array[:mid])
         merge_sort(array[mid:])
 
         while i < len(array)//2 and j < len(array):
+            utils.plot_graph(array, i, j)
+
             if array[i] <= array[j]:
                 ordered_array.append(array[i])
                 i = i+1
@@ -93,6 +119,8 @@ def merge_sort(array):
         for k in range(len(array)):
             array[k] = ordered_array[k]
 
+            utils.plot_graph(array, k)
+
         return array
 
 def heap_sort(array):
@@ -105,10 +133,16 @@ def heap_sort(array):
             i = i-1
             j = (i-1) // 2
 
+            utils.plot_graph(array, i, j)
+
             if array[i] > array[j]:
                 array[i], array[j] = array[j], array[i]
 
+                utils.plot_graph(array, i, j)
+
         array[0], array[len(array)-1] = array[len(array)-1], array[0]
+
+        utils.plot_graph(array, 0, len(array)-1)
 
     heap_sort(array[:-1])
 
